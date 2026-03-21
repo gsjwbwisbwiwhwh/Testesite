@@ -3,80 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danielzin</title>
+    <title>Galeria do Daniel</title>
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        #login-box { background: #161b22; padding: 30px; border-radius: 12px; border: 1px solid #30363d; text-align: center; width: 320px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        input { width: 100%; padding: 12px; margin: 15px 0; border-radius: 8px; border: 1px solid #30363d; background: #0d1117; color: white; box-sizing: border-box; }
-        button { width: 100%; background: #238636; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        body { background-color: #0d1117; color: #c9d1d9; font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        #login-box { background: #161b22; padding: 30px; border-radius: 10px; border: 1px solid #30363d; text-align: center; width: 300px; }
+        input { width: 100%; padding: 12px; margin: 15px 0; border-radius: 6px; border: 1px solid #30363d; background: #0d1117; color: white; box-sizing: border-box; text-align: center; }
+        button { width: 100%; background: #238636; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: bold; }
         
-        #conteudo { display: none; text-align: center; padding: 20px; width: 95%; max-width: 500px; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
-        .foto-card { margin-bottom: 25px; background: #161b22; padding: 15px; border-radius: 12px; border: 1px solid #30363d; }
-        img { width: 100%; border-radius: 8px; margin-top: 10px; border: 1px solid #444; }
-        h1 { color: #58a6ff; }
-        .hidden { display: none; } /* Para esconder a foto extra da Letícia */
+        #galeria { display: none; text-align: center; width: 90%; max-width: 500px; padding: 20px; }
+        .foto-box { margin-bottom: 25px; background: #161b22; padding: 10px; border-radius: 8px; border: 1px solid #30363d; }
+        .foto-box p { margin: 5px 0; font-weight: bold; color: #58a6ff; }
+        img { width: 100%; border-radius: 5px; }
     </style>
 </head>
 <body>
 
     <div id="login-box">
-        <h2>Bota senha que eu te disse</h2>
-        <input type="password" id="senha" placeholder="Sua senha...">
-        <button onclick="acessar()">Entrar</button>
-        <p id="mensagem" style="color: #f85149; font-size: 14px; margin-top: 10px;"></p>
+        <h2>Acesso Privado</h2>
+        <p>Digite a senha para ver as fotos:</p>
+        <input type="password" id="senha" placeholder="Senha...">
+        <button onclick="entrar()">Entrar</button>
+        <p id="erro" style="color: #f85149; font-size: 14px; margin-top: 10px;"></p>
     </div>
 
-    <div id="conteudo">
-        <h1 id="boas-vindas">Oi bbzinha</h1>
+    <div id="galeria">
+        <h1>📸 Galeria do Daniel</h1>
         
-        <div class="foto-card">
-            <h3>Feiura extrema!!</h3>
-            <img src="foto_minha.jpg" alt="Minha Foto">
+        <div class="foto-box">
+            <p>foto do jogo</p>
+            <img src="foto1.jpg">
         </div>
 
-        <div class="foto-card">
-            <h3 id="legenda-amiga">Sua Foto</h3>
-            <img id="foto-dinamica" src="" alt="Foto Amiga">
+        <div class="foto-box">
+            <p>Foto Minha feio demais</p>
+            <img src="foto2.jpg">
         </div>
 
-        <div id="card-extra" class="foto-card hidden">
-            <h3>Foto da vara kkk</h3>
-            <img src="fotopk.jpg" alt="Foto PK">
+        <div class="foto-box">
+            <p>Foto da pika</p>
+            <img src="foto3.jpg">
         </div>
     </div>
 
     <script>
-        function acessar() {
+        function entrar() {
             const senhaDigitada = document.getElementById("senha").value;
-            const loginBox = document.getElementById("login-box");
-            const conteudo = document.getElementById("conteudo");
             
-            const titulo = document.getElementById("boas-vindas");
-            const imagem = document.getElementById("foto-dinamica");
-            const cardExtra = document.getElementById("card-extra");
-
-            // --- ACESSO DA GABRIELE ---
-            if (senhaDigitada === "Gabi123") { 
-                loginBox.style.display = "none";
-                conteudo.style.display = "block";
-                titulo.innerText = "Olá, Gabriele!";
-                imagem.src = "foto_gabriele.jpg"; 
-                cardExtra.classList.remove("hidden"); // Mostra a fotopk
-            } 
-            
-            // --- ACESSO DA LETÍCIA ---
-            else if (senhaDigitada === "Le123") { 
-                loginBox.style.display = "none";
-                conteudo.style.display = "block";
-                titulo.innerText = "Olá, Letícia!";
-                imagem.src = "foto_leticia.jpg"; 
-                cardExtra.classList.add("hidden"); // Garante que a fotopk fique escondida
-            } 
-            
-            else {
-                document.getElementById("mensagem").innerText = "Senha incorreta!";
+            // A SENHA QUE VOCÊ PEDIU
+            if (senhaDigitada === "danielgostoso") {
+                document.getElementById("login-box").style.display = "none";
+                document.getElementById("galeria").style.display = "block";
+            } else {
+                document.getElementById("erro").innerText = "Senha incorreta!";
             }
         }
     </script>
